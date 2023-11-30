@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_6.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Shop</span></p>
+            <h1 class="mb-0 bread">payment</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section">
+    	<div class="container">
+    		<div class="row">
+
+    			<div class="col-lg-6 mb-5 ftco-animate">
+    				<a href="" class="image-popup prod-img-bg"><img src="{% static 'images/bag7.jpg' %}" class="img-fluid" alt="Colorlib Template"></a>
+    			</div>
+<body>
+
+<form action="payment" method="POST" id="checkout-form">
+    {% csrf_token %}
+
+  <div>
+	  <label for="creditCard">Account_number</label>
+	  <input type="text" name="account_number" required id="creditCard">
+  </div>
+<div>
+	  <label for="name">Name</label>
+	  <input type="text" name="name" required id="name">
+  <div>
+	  <label for="cvv">Security Code</label>
+	  <input type="text" name="cvv" required id="cvv">
+  </div>
+
+  <div>
+    <label for="Expiration">Exp. (MM/YYYY)</label>
+      <input type="text" name="expiry_month" required id="exp-month" size="2">
+      <span> / </span>
+      <input type="text" name="expiry_rear" required id="exp-year" size="4">
+  </div>
+
+  <button type="submit" id="submit-button">Buy Now</button>
+
+</form>
+</body>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

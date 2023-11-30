@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+	<div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_6.jpg' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Checkout</span></p>
+            <h1 class="mb-0 bread">Checkout</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-10 ftco-animate">
+						<form method="post" action="checkout" class="billing-form">
+							        {% csrf_token %}
+
+							<h3 class="mb-4 billing-heading">Billing Details</h3>
+	          	<div class="row align-items-end">
+	          		<div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="firstname">First Name</label>
+	                  <input type="text" class="form-control" name="fname" required placeholder="Enter your first_name">
+	                </div>
+	              </div>
+	              <div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="lastname">Last Name</label>
+	                  <input type="text" class="form-control"  name="lname" required placeholder="Enter your last_name">
+	                </div>
+                </div>
+                <div class="w-100"></div>
+		            <div class="col-md-12">
+		            	<div class="form-group">
+		            		<label for="country">State / Country</label>
+		            		<div class="select-wrap">
+		                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+		                  <select name="country" id="country" required class="form-control">
+		                  	<option value="">France</option>
+		                    <option value="">India</option>
+							  <option value="">USA</option>
+							<option value="">U.K</option>
+		                    <option value="">Philippines</option>
+		                    <option value="">South Korea</option>
+		                    <option value="">Hongkong</option>
+		                    <option value="">Japan</option>
+		                  </select>
+		                </div>
+		            	</div>
+		            </div>
+		            <div class="w-100"></div>
+		            <div class="col-md-6">
+		            	<div class="form-group">
+	                	<label for="streetaddress">Street Address</label>
+	                  <input type="text" class="form-control" name="address" required placeholder="Enter your address">
+	                </div>
+		            </div>
+		            <div class="col-md-6">
+		            	<div class="form-group">
+	                  <input type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
+	                </div>
+		            </div>
+		            <div class="w-100"></div>
+		            <div class="col-md-6">
+		            	<div class="form-group">
+	                	<label for="towncity">Town / City</label>
+	                  <input type="text" class="form-control" name="city" required placeholder="">
+	                </div>
+		            </div>
+		            <div class="col-md-6">
+		            	<div class="form-group">
+		            		<label for="postcodezip">Postcode / ZIP *</label>
+	                  <input type="text" class="form-control" required name="pin" placeholder="">
+	                </div>
+		            </div>
+		            <div class="w-100"></div>
+		            <div class="col-md-6">
+	                <div class="form-group">
+	                	<label for= "phone">Phone</label>
+	                  <input type="text" class="form-control" name="phone" required placeholder="phone number with country code">
+	                </div>
+	              </div>
+	              <div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="emailaddress">Email Address</label>
+	                  <input type="text" class="form-control" name="email" required placeholder="valid email id">
+	                </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-md-12">
+                	<div class="form-group mt-4">
+
+									</div>
+                </div>
+	            </div>
+
+
+
+
+	          <div class="row mt-5 pt-3 d-flex">
+	          	<div class="col-md-6 d-flex">
+	          		<div class="cart-detail cart-total bg-light p-3 p-md-4">
+	          			<h3 class="billing-heading mb-4">Cart Total</h3>
+	          			<p class="d-flex">
+		    					<span>Subtotal</span>
+    						<span>{{t}}</span>
+    					</p>
+    					<p class="d-flex">
+    						<span>total quantity</span>
+    						<span>{{cn}}</span>
+    					</p>
+    					<p class="d-flex">
+    						<span>Discount</span>
+    						<span>{{dsc}}</span>
+    					</p>
+    					<hr>
+    					<p class="d-flex total-price">
+    						<span>Total</span>
+    						<span>{{gt}}</span>
+						</p>
+						<button type="submit" class="btn btn-primary">Continue</button><br>
+					    <p> <a href="" class="btn btn-primary" id="rzp-button">pay with Razorpay</a></p>
+
+
+								</div>
+
+
+          </div> <!-- .col-md-8 -->
+        </div>
+      </div>
+						          </form><!-- END -->
+
+    </section> <!-- .section -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                <script>
+                var i ={{t}};
+                var x= i * 100;
+                    var options = {
+                        "key": "rzp_test_c64eQLZGlA4yLq", // Enter the Key ID generated from the Dashboard
+                        "amount": x, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                        "currency": "INR",
+                        "name": "{{user.username}}",
+                        "description": "shoping",
+                        "image": "https://example.com/your_logo",
+                        "handler": function (response){
+                            alert(response.razorpay_payment_id);
+                            alert(response.razorpay_order_id);
+                            alert(response.razorpay_signature)
+                        },
+						"theme": {
+                            "color": "#3399cc"
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.on('payment.failed', function (response){
+                            alert(response.error.code);
+                            alert(response.error.description);
+                            alert(response.error.source);
+                            alert(response.error.step);
+                            alert(response.error.reason);
+                            alert(response.error.metadata.order_id);
+                            alert(response.error.metadata.payment_id);
+                    });
+                    document.getElementById('rzp-button').onclick = function(e){
+                        rzp1.open();
+                        e.preventDefault();
+                    }
+                </script>
+{% endblock %}
