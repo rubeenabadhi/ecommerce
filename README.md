@@ -15,4 +15,5 @@
 ![Screenshot (2302)](https://github.com/rubeenabadhi/ecommerce/assets/152485008/3be2ef7c-a9f9-4bcf-a32d-fcc1e88d033b)
 ![Screenshot (2303)](https://github.com/rubeenabadhi/ecommerce/assets/152485008/bc1f6f40-aad6-4650-9811-842eb6c8d33a)
 ![Screenshot (2304)](https://github.com/rubeenabadhi/ecommerce/assets/152485008/4a41f98a-cced-4bd9-ba3b-6a89962b9f51)
+![Screenshot (2308)](https://github.com/rubeenabadhi/ecommerce/assets/152485008/b9a4ed87-2e91-4cc7-ae18-be4f6a75d290)
 
